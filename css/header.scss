@@ -1,0 +1,249 @@
+@import "blocks";
+
+
+header {
+	.account {
+		@include inline-flex;
+	    position: relative;
+	    min-width: 120px;
+
+	    > p {
+		    width: 100%;
+		    margin: 0;
+		    padding: 1rem 0;
+		    padding-left: 5px;
+		    position: relative;
+			z-index: 9;
+		}
+		> p:hover {
+		    border-left: 1px solid #16223b52;
+		}
+		a {
+			color: #fff;
+		}
+	}
+	.account-dropdown {
+	    position: absolute;
+	    top: 50px;
+	    padding: 0 4px;
+	    min-width: 155px;
+	    overflow: auto;
+	    height: 0;
+	    @include hidden;
+		border: 1px solid #ffffff38;
+		border-top: 1px dotted #ffffff38;
+		text-align: center;
+
+		p:not(:last-child) {
+		    border-bottom: 1px solid #ffffff38;
+		}
+	    p {
+		    padding: 10px 0;
+		    margin: 0;
+		}
+	}
+	.account-dropdown.show {
+		height: auto;
+	    @include visible;
+	    z-index: 10;
+	}
+	.account-language {
+	    min-width: 300px;
+	}
+	#languages {
+		font-family: $fontFamily0;
+		font-size: 1rem;
+	    padding: 6px 20px;
+	    color: #fff;
+	    appearance: none;    	
+    	min-width: 135px;
+    	color: #fff;
+    	background: #0b1324;
+    	border: 1px solid rgba(255, 255, 255, 0.2196078431);
+    	background: url("data:image/svg+xml,<svg height='10px' width='10px' viewBox='0 0 16 16' xmlns='http://www.w3.org/2000/svg'><path fill='white' d='M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/></svg>") no-repeat !important;
+    	background-position: calc(100% - 0.75rem) center !important;
+
+    	option {
+		    color: $white !important;
+		}
+	}
+	#languages:focus, #languages:active {
+	    border: 1px solid $secondaryColor;
+	    outline: none;
+	}
+}
+
+@media (max-width: 767px) {
+	header {
+		@include flex-box;
+    	@include justify-content(space-between);
+    	padding: 60px 5% 20px;
+
+    	.menu-img {
+    		display: none;
+    	}
+    	.menu-icon {
+			filter: invert(100%) sepia(4%) saturate(0%) hue-rotate(256deg) brightness(103%) contrast(101%);
+		}
+		#languages, .account {
+		    margin: 0 20px;
+		}
+		#languages option {
+			background-color: #0b1324 !important;
+		}
+		.account-dropdown {
+			background: #0b1324;
+		}
+		.account-language {
+		    position: fixed;
+		    top: 0;
+		    width: 100%;
+		    left: 0;
+		    text-align: center;
+		    background: #0b1324;
+		    color: $white;
+		    z-index: 11;
+
+		    a {
+				color: $white;
+			}
+		}
+		.account {
+		    max-width: 120px;
+		    display: inline-block;
+
+		    > p {
+		    	background: #0b1324;
+		    }
+		}
+		.header-bottom {
+		    position: relative;
+		}
+		.mobile-ham .menu-icon {
+		    position: absolute;
+		    top: 20px;
+		    right: 0;
+		}
+		.close, .menu-icon.hide {
+			@include hidden;
+		}
+		.close.show, .menu-icon {
+			@include visible;
+		}
+		.close {
+			position: fixed;
+		    z-index: 10;
+		    top: 74px;
+		    right: 27px;
+		}
+		nav {
+		    width: 0;
+		    position: fixed;
+		    right: 0;
+		    top: 50px;
+		    @include transform(100%);
+		    @include hidden;
+		    height: 100vh;
+		    background: $primaryColor;
+		    z-index: 9;
+
+		    li.parent {
+			    padding: 12px;
+			    color: $white;
+    			border-bottom: 1px solid #ffffff1f;
+
+			    a {
+			    	color: $white;
+			    }
+			}
+
+			.child {
+				display: none;
+				padding-left: 30px;
+			}
+			.child.show {
+				display: block;
+			}
+
+		}
+		nav.show {
+		    @include transform(0);
+		    width: 100vw;
+		    @include visible;
+		}
+	}
+}
+
+@media (min-width: 768px) {
+	header {
+		#header-top {
+		    @include flex-box;
+		    @include justify-content(space-between);
+		}
+		.account-language {
+		    min-width: 300px;
+		}
+		#languages option {
+			background-color: #121e36 !important;
+		}
+		.mobile-ham {
+		    display: none;
+		}
+		.account-dropdown {
+			background: #121e36;
+		}
+		.header-bottom {
+		    margin: 25px 0 0;
+		    background-color: #101a2e;
+		}
+		select#languages {
+			color: #16223b !important;
+			border: 1px solid #16223b;
+			background: url("data:image/svg+xml,<svg height='10px' width='10px' viewBox='0 0 16 16' xmlns='http://www.w3.org/2000/svg'><path fill='black' d='M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/></svg>") no-repeat !important;
+    		background-position: calc(100% - 0.75rem) center !important;
+		}
+		
+		nav {
+			ul {
+				margin: auto;
+			    padding: 20px 10px;
+			    @include flex-box;
+			    @include justify-content(space-around);
+			}
+			> ul > li {
+				display: inline-block;
+				min-width: 170px;
+				cursor: pointer;
+			}
+			li, a {
+				color: #fff;
+			}
+			.menu-img img {
+			    width: 150px;
+			}
+			.child.show {
+			    display: grid !important;
+			    grid-template-columns: repeat(4, 1fr);
+			}
+			.child {
+				display: none;
+				position: absolute;
+			    z-index: 9;
+			    background: #101a2e;
+			    left: 0;
+			    right: 0;
+			    padding: 1% 6% 0;
+			}
+			.child.show {
+				display: block;
+				min-height: 190px;
+			}
+		}
+	}
+}
+
+@media (min-width: 1200px) {
+	nav ul {
+		width: 80%;
+	}
+}

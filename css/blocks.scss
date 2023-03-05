@@ -1,0 +1,141 @@
+$fontFamily0: 'Poppins', sans-serif;
+
+$weightLight: 300;
+$weightRegular: 400;
+$weightSemiBold: 600;
+
+$primaryColor: #16223b;
+$secondaryColor: #ee743b;
+$white: #fff;
+
+@mixin flex-box {
+	display: -webkit-box;
+	display: -moz-box;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
+}
+
+@mixin inline-flex {
+  display: -webkit-inline-box;
+  display: -moz-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+}
+
+@mixin justify-content($value) {
+	@if $value == flex-start {
+		-webkit-box-pack: start;
+		-moz-box-pack: start;
+		-ms-flex-pack: start;
+	} @else if $value == flex-end {
+		-webkit-box-pack: end;
+		-moz-box-pack: end;
+		-ms-flex-pack: end;
+	} @else if $value == space-between {
+		-webkit-box-pack: justify;
+		-moz-box-pack: justify;
+		-ms-flex-pack: justify;
+	} @else if $value == space-around {
+		-ms-flex-pack: distribute;
+	} @else {
+		-webkit-box-pack: $value;
+		-moz-box-pack: $value;
+		-ms-flex-pack: $value;
+	}
+	-webkit-justify-content: $value;
+	justify-content: $value;
+}
+
+@mixin align-items($value: stretch) {
+	@if $value == flex-start {
+		-webkit-box-align: start;
+		-moz-box-align: start;
+		-ms-flex-align: start;
+	} @else if $value == flex-end {
+		-webkit-box-align: end;
+		-moz-box-align: end;
+		-ms-flex-align: end;
+	} @else {
+		-webkit-box-align: $value;
+		-moz-box-align: $value;
+		-ms-flex-align: $value;
+	}
+	-webkit-align-items: $value;
+	align-items: $value;
+}
+
+@mixin flex-direction($value: row) {
+	@if $value == column {
+		-webkit-box-direction: normal;
+		-webkit-box-orient: vertical;
+		-moz-box-direction: normal;
+		-moz-box-orient: vertical;
+	}
+	-webkit-flex-direction: $value;
+	-ms-flex-direction: $value;
+	flex-direction: $value;
+}
+@mixin flex-wrap($value: nowrap) {
+	// No Webkit/FF Box fallback.
+	-webkit-flex-wrap: $value;
+	@if $value == nowrap {
+		-ms-flex-wrap: none;
+	} @else {
+		-ms-flex-wrap: $value;
+	}
+	flex-wrap: $value;
+}
+
+@mixin opacity($value) {
+	@if($value == 0) {
+		filter: alpha(opacity=0);
+	} @else if($value == 1) {
+		filter: alpha(opacity=100);
+	}
+	
+	-moz-opacity: $value; /* Netscape or firefox */
+	-khtml-opacity: $value; /* Safari 1.x */
+	opacity: $value; /* Good browsers */
+}
+
+@mixin hidden {
+	@include opacity(0);
+	visibility: hidden;
+	transition: all 2s ease;
+}
+
+@mixin visible {
+	@include opacity(1);
+	visibility: visible;
+}
+
+@mixin transform($value) {
+	-moz-transform: translateX($value);
+	-o-transform: translateX($value);
+	-webkit-transform: translateX($value);
+	transform: translateX($value);
+}
+
+@mixin highlight($weight, $color, $size) {
+	font-weight: $weight;
+    color: $color;
+    font-size: $size;
+}
+
+@mixin button-style($size, $padding, $color, $bg, $border, $radius) {
+	font-size: $size;
+    padding: $padding;
+    color: $color;
+    background: $bg;
+    border: $border;
+    cursor: pointer;
+    border-radius: $radius;
+    transition: all 1s ease;
+}
+
+@mixin button-hover-style($bg, $color) {
+	background: $bg !important;
+	color: $color !important;
+}
